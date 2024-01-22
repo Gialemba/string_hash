@@ -22,11 +22,11 @@ int	main(int ac, char **av)
 		sha224_t	sha224;
 		sha512_t	sha512;
 
-		ft_sha512(	&sha512,	(uint8_t *)av[1]);
-		ft_sha224(	&sha224,	(uint8_t *)av[1]);
-		ft_sha256(	&sha256,	(uint8_t *)av[1]);
-		ft_sha1(	&sha1,		(uint8_t *)av[1]);
-		ft_md5(		&md5,		(uint8_t *)av[1]);
+		ft_sha512(&sha512, (uint8_t *)av[1]);
+		ft_sha224(&sha224, (uint8_t *)av[1]);
+		ft_sha256(&sha256, (uint8_t *)av[1]);
+		ft_sha1(  &sha1,   (uint8_t *)av[1]);
+		ft_md5(   &md5,    (uint8_t *)av[1]);
 
 		int i = 0;
 		while(i < 16)
