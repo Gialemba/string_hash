@@ -13,19 +13,19 @@
 #ifndef HASHING_H
 # define HASHING_H
 
-// lib
+/*	lib	*/
 # include "../libft/include_h/libft.h"
 
-//											struct
+/*	struct	*/
 //MD5
 typedef struct	md5_s{
 
-	uint64_t	size;		// size of input in byte
+	uint64_t	size;		// len of the input after padding
 	uint32_t	buffer[4];	// current accumulation of hash
 	uint32_t	input[16];	// input to be used in the next step
 	uint8_t		digest[16];	// result of algorithm
 
-}md5_t;
+}				md5_t;
 
 // SHA1
 typedef struct	sha1_s{
@@ -40,34 +40,35 @@ typedef struct	sha1_s{
 //SHA256
 typedef struct	sha256_s{
 
-	uint64_t	len;
-	uint32_t	input[16];
-	uint32_t	hash[8];
-	uint8_t		digest[32];
+	uint64_t	len;		// len of the input after padding
+	uint32_t	input[16];	// input to be used in the next step
+	uint32_t	hash[8];	// current accumulation of hash
+	uint8_t		digest[32];	// result of algorithm
 
 }				sha256_t;
 
 //SHA224
 typedef struct	sha224_s{
 
-	uint64_t	len;
-	uint32_t	input[16];
-	uint32_t	hash[8];
-	uint8_t		digest[28];
+	uint64_t	len;		// len of the input after padding
+	uint32_t	input[16];	// input to be used in the next step
+	uint32_t	hash[8];	// current accumulation of hash
+	uint8_t		digest[28];	// result of algorithm
 
 }				sha224_t;
 
 //SHA512
 typedef struct	sha512_s{
 
-	uint64_t	len;
-	uint64_t	input[16];
-	uint64_t	hash[8];
-	uint8_t		digest[64];
+	uint64_t	len;		// len of the input after padding
+	uint64_t	input[16];	// input to be used in the next step
+	uint64_t	hash[8];	// current accumulation of hash
+	uint8_t		digest[64];	// result of algorithm
 
 }				sha512_t;
 
-//											function
+/*	function	*/
+// main
 uint32_t	ft_leftrotate(uint32_t x, uint32_t offset);
 uint32_t	ft_swap32(uint32_t num);
 uint32_t	ft_rightrotate(uint32_t x, uint32_t offset);
