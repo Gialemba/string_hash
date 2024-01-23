@@ -6,7 +6,7 @@
 /*   By: tali <tali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:59:51 by tali              #+#    #+#             */
-/*   Updated: 2024/01/23 01:04:48 by tali             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:09:16 by tali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,6 @@ uint64_t	ft_rightrotate64(uint64_t x, uint64_t offset)
 	return (x >> offset % 64) | (x << (64 - offset) % 64);
 }
 
-uint64_t	ft_swap64(uint64_t value)
-{
-	return	((value & 0x00000000000000FF) << 56) |
-			((value & 0x000000000000FF00) << 40) |
-			((value & 0x0000000000FF0000) << 24) |
-			((value & 0x00000000FF000000) << 8)  |
-			((value & 0x000000FF00000000) >> 8)  |
-			((value & 0x0000FF0000000000) >> 24) |
-			((value & 0x00FF000000000000) >> 40) |
-			((value & 0xFF00000000000000) >> 56);
-}
-
 uint32_t	ft_swap32(uint32_t num)
 {
 	uint32_t	swapped;
@@ -55,4 +43,14 @@ uint32_t	ft_swap32(uint32_t num)
 	return (swapped);
 }
 
-
+uint64_t	ft_swap64(uint64_t value)
+{
+	return	((value & 0x00000000000000FF) << 56) |
+			((value & 0x000000000000FF00) << 40) |
+			((value & 0x0000000000FF0000) << 24) |
+			((value & 0x00000000FF000000) << 8)  |
+			((value & 0x000000FF00000000) >> 8)  |
+			((value & 0x0000FF0000000000) >> 24) |
+			((value & 0x00FF000000000000) >> 40) |
+			((value & 0xFF00000000000000) >> 56);
+}
