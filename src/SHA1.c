@@ -6,7 +6,7 @@
 /*   By: tali <tali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:52:14 by tali              #+#    #+#             */
-/*   Updated: 2024/01/21 21:56:41 by tali             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:07:17 by tali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ typedef struct	sha1_s{
 
 }				sha1_t;
 */
-
-uint32_t	ft_swap32(uint32_t num)
-{
-	uint32_t	swapped;
-
-	swapped =	((num>>24)&0xff) | // move byte 3 to byte 0
-				((num<<8)&0xff0000) | // move byte 1 to byte 2
-				((num>>8)&0xff00) | // move byte 2 to byte 1
-				((num<<24)&0xff000000); // byte 0 to byte 3
-	return (swapped);
-}
 
 void	ft_sha1(sha1_t *sha1, uint8_t *s)
 {
@@ -71,7 +60,7 @@ void	ft_sha1_algo(sha1_t *sha1)
 	ft_memset(w, 0, 80);
 	ft_memcpy(w, sha1->input, 64);
 	for (int i = 16; i < 80; i++)
-		w[i] = ft_leftrotate(w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16], 1);
+		w[i] = ft_leftrotate32(w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16], 1);
 
 	uint64_t	i = 0;
 	while(i < 80)
@@ -98,10 +87,10 @@ void	ft_sha1_algo(sha1_t *sha1)
 			f = B ^ C ^ D;
 			k = 0xCA62C1D6;
 		}
-		uint32_t	temp = ft_leftrotate(A, 5) + f + E + k + w[i];
+		uint32_t	temp = ft_leftrotate32(A, 5) + f + E + k + w[i];
 		E = D;
 		D = C;
-		C = ft_leftrotate(B, 30);
+		C = ft_leftrotate32(B, 30);
 		B = A;
 		A = temp;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: tali <tali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 16:24:18 by tali              #+#    #+#             */
-/*   Updated: 2024/01/21 23:42:24 by tali             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:06:13 by tali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,6 @@ void	ft_sha256(sha256_t *sha256, uint8_t *s)
 	free(new_s);
 }
 
-uint32_t	ft_rightrotate(uint32_t x, uint32_t offset)
-{
-	return (x >> offset % 32) | (x << (32 - offset) % 32);
-}
-
 void	ft_sha256_algo(sha256_t *sha256)
 {
 	uint32_t	w[64];
@@ -75,8 +70,8 @@ void	ft_sha256_algo(sha256_t *sha256)
 	ft_memcpy(w, sha256->input, 64);
 	for (int i = 16; i < 64; i++)
 	{
-		s0 = ft_rightrotate(w[i-15], 7) ^ ft_rightrotate(w[i-15], 18) ^ w[i-15] >> 3;
-		s1 = ft_rightrotate(w[i-2], 17) ^ ft_rightrotate(w[i-2], 19) ^ w[i-2] >> 10;
+		s0 = ft_rightrotate32(w[i-15], 7) ^ ft_rightrotate32(w[i-15], 18) ^ w[i-15] >> 3;
+		s1 = ft_rightrotate32(w[i-2], 17) ^ ft_rightrotate32(w[i-2], 19) ^ w[i-2] >> 10;
 		w[i] = w[i-16] + s0 + w[i-7] + s1;
 	}
 
@@ -94,10 +89,10 @@ void	ft_sha256_algo(sha256_t *sha256)
 	{
 		uint32_t	ch, maj, temp1, temp2;
 
-		s1		= ft_rightrotate(E, 6) ^ ft_rightrotate(E, 11) ^ ft_rightrotate(E, 25);
+		s1		= ft_rightrotate32(E, 6) ^ ft_rightrotate32(E, 11) ^ ft_rightrotate32(E, 25);
 		ch		= (E & F) ^ ((~E) & G);
 		temp1	= H + s1 + ch + K[i] + w[i];
-		s0		= ft_rightrotate(A, 2) ^ ft_rightrotate(A, 13) ^ ft_rightrotate(A, 22);
+		s0		= ft_rightrotate32(A, 2) ^ ft_rightrotate32(A, 13) ^ ft_rightrotate32(A, 22);
 		maj		= (A & B) ^ (A & C) ^ (B & C);
 		temp2	= s0 + maj;
 

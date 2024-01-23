@@ -6,7 +6,7 @@
 /*   By: tali <tali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:22:48 by tali              #+#    #+#             */
-/*   Updated: 2024/01/22 19:42:42 by tali             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:04:32 by tali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ typedef struct	sha512_s{
 
 /*	function	*/
 // main
-uint32_t	ft_leftrotate(uint32_t x, uint32_t offset);
-uint32_t	ft_swap32(uint32_t num);
-uint32_t	ft_rightrotate(uint32_t x, uint32_t offset);
-uint64_t	ft_swap64(uint64_t num);
+uint32_t	ft_leftrotate32(uint32_t x, uint32_t offset);
+uint64_t	ft_leftrotate64(uint64_t x, uint64_t offset);
+uint32_t	ft_rightrotate32(uint32_t x, uint32_t offset);
 uint64_t	ft_rightrotate64(uint64_t x, uint64_t offset);
+uint32_t	ft_swap32(uint32_t num);
+uint64_t	ft_swap64(uint64_t num);
 
 // MD5
 void			ft_md5(md5_t *md5, uint8_t *s);

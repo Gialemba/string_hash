@@ -6,7 +6,7 @@
 /*   By: tali <tali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:14:57 by tali              #+#    #+#             */
-/*   Updated: 2024/01/22 19:23:41 by tali             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:06:49 by tali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	ft_sha224_algo(sha224_t *sha224)
 	ft_memcpy(w, sha224->input, 64);
 	for (int i = 16; i < 64; i++)
 	{
-		s0 = ft_rightrotate(w[i-15], 7) ^ ft_rightrotate(w[i-15], 18) ^ w[i-15] >> 3;
-		s1 = ft_rightrotate(w[i-2], 17) ^ ft_rightrotate(w[i-2], 19) ^ w[i-2] >> 10;
+		s0 = ft_rightrotate32(w[i-15], 7) ^ ft_rightrotate32(w[i-15], 18) ^ w[i-15] >> 3;
+		s1 = ft_rightrotate32(w[i-2], 17) ^ ft_rightrotate32(w[i-2], 19) ^ w[i-2] >> 10;
 		w[i] = w[i-16] + s0 + w[i-7] + s1;
 	}
 
@@ -89,10 +89,10 @@ void	ft_sha224_algo(sha224_t *sha224)
 	{
 		uint32_t	ch, maj, temp1, temp2;
 
-		s1		= ft_rightrotate(E, 6) ^ ft_rightrotate(E, 11) ^ ft_rightrotate(E, 25);
+		s1		= ft_rightrotate32(E, 6) ^ ft_rightrotate32(E, 11) ^ ft_rightrotate32(E, 25);
 		ch		= (E & F) ^ ((~E) & G);
 		temp1	= H + s1 + ch + K[i] + w[i];
-		s0		= ft_rightrotate(A, 2) ^ ft_rightrotate(A, 13) ^ ft_rightrotate(A, 22);
+		s0		= ft_rightrotate32(A, 2) ^ ft_rightrotate32(A, 13) ^ ft_rightrotate32(A, 22);
 		maj		= (A & B) ^ (A & C) ^ (B & C);
 		temp2	= s0 + maj;
 

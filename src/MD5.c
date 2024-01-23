@@ -6,7 +6,7 @@
 /*   By: tali <tali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:53:55 by tali              #+#    #+#             */
-/*   Updated: 2024/01/21 18:24:36 by tali             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:07:25 by tali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,13 @@ void	ft_md5_algo(md5_t *md5)
 		A = D;
 		D = C;
 		C = B;
-		B += ft_leftrotate(f, S[i]);
+		B += ft_leftrotate32(f, S[i]);
 		i++;
 	}
 	md5->buffer[0] += A;
 	md5->buffer[1] += B;
 	md5->buffer[2] += C;
 	md5->buffer[3] += D;
-}
-
-uint32_t	ft_leftrotate(uint32_t x, uint32_t offset)
-{
-	return ( x << offset ) | ( x >> (32 - offset));
 }
 
 // padding of the main string
