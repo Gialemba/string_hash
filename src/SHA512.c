@@ -148,8 +148,8 @@ unsigned char	*ft_sha512_padding(sha512_t *sha512, uint8_t *s, size_t l)
 	unsigned __int128 l2 = l << 3;
 
 	new_s[i + 7] = l2;
-	new_s[i + 6] = l2 >> 9;
-	new_s[i + 5] = l2 >> 18;
+	new_s[i + 6] = l2 >> 8;
+	new_s[i + 5] = l2 >> 16;
 	new_s[i + 4] = l2 >> 24;
 	new_s[i + 3] = l2 >> 32;
 	new_s[i + 2] = l2 >> 40;
